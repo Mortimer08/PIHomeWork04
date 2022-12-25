@@ -18,7 +18,7 @@ def polyniminal(k: int) -> dict:
 k = int(input('Введите натуральную степень k: '))
 
 polynom = polyniminal(k)
-print(polynom)
+
 line = ''
 for key in polynom:
     if polynom[key] != 0:
