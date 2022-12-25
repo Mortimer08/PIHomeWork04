@@ -21,22 +21,25 @@ polynom = polyniminal(k)
 print(polynom)
 line = ''
 for key in polynom:
-    exponent = str(key)
-    if polynom[key] < 0:
-        factor = ' - ' + str(polynom[key])[1:]
-    else:
-        factor = str(polynom[key])
-    if factor != '0':
-        if polynom[key] > 0 and key != k:
-            line += ' + '
-        if exponent != '0':
-            line += factor
-            if exponent == '1':
-                line += '*' + 'x'
-            else:
-                line += '*' + 'x' + '**' + exponent
+    if polynom[key] != 0:
+        factor = str(abs(polynom[key]))
+        if polynom[key] < 0:
+            sign = ' - '
+        elif key == k:
+            sign = ''
         else:
-            line += factor
+            sign = ' + '
+        if key == 0:
+            x = ''
+            exponent = ''
+        elif key == 1:
+            x = '*x'
+            exponent = ''
+        else:
+            x = '*x**'
+            exponent = str(key)
+    line += sign + factor + x + exponent
+
 line += ' = 0'
 
 
@@ -44,4 +47,3 @@ print(line)
 
 with open('PIHomeWork04/polynom.txt', 'w') as data:
     data.writelines(line)
-
