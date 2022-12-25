@@ -18,11 +18,13 @@ def create_coef_dict(polynom: str) -> dict:
             polynom_dict['0'] = monominal[0]
     return polynom_dict
 
+
 def polynom_dicts_sum(poly_dict1: dict, poly_dict2: dict) -> dict:
     poly_sum_dict = {}
     if len(poly_dict1) > len(poly_dict2):
         for exponent in poly_dict1:
-            poly_sum_dict[exponent] = str(int(poly_dict1.get(exponent)) + int(poly_dict2.get(exponent,0)))
+            poly_sum_dict[exponent] = str(
+                int(poly_dict1.get(exponent)) + int(poly_dict2.get(exponent, 0)))
     return poly_sum_dict
 
 
@@ -52,7 +54,6 @@ def polynom_dict_to_line(poly_dict: dict) -> str:
     return line
 
 
-
 with open('PIHomeWork04/polynom1.txt', 'r') as data:
     line1 = data.readline()
 with open('PIHomeWork04/polynom2.txt', 'r') as data:
@@ -63,7 +64,7 @@ print(line2)
 
 poly1_dict = create_coef_dict(line1)
 poly2_dict = create_coef_dict(line2)
-polynom_sum_dict = polynom_dicts_sum(poly1_dict,poly2_dict)
+polynom_sum_dict = polynom_dicts_sum(poly1_dict, poly2_dict)
 print(polynom_sum_dict)
 
 
