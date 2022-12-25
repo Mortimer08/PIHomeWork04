@@ -15,35 +15,37 @@ def polyniminal(k: int) -> dict:
     return poly_dict
 
 
+def polynom_dict_to_line(poly_dict: dict) -> str:
+    k = max(poly_dict.keys())
+    line = ''
+    for key in poly_dict:
+        if poly_dict[key] != 0:
+            factor = str(abs(int(poly_dict[key])))
+            if int(poly_dict[key]) < 0:
+                sign = ' - '
+            elif int(key) == k:
+                sign = ''
+            else:
+                sign = ' + '
+            if int(key) == 0:
+                x = ''
+                exponent = ''
+            elif int(key) == 1:
+                x = '*x'
+                exponent = ''
+            else:
+                x = '*x**'
+                exponent = str(key)
+        line += sign + factor + x + exponent
+    line += ' = 0'
+    return line
+
+
 k = int(input('Введите натуральную степень k: '))
 
 polynom = polyniminal(k)
 
-line = ''
-for key in polynom:
-    if polynom[key] != 0:
-        factor = str(abs(polynom[key]))
-        if polynom[key] < 0:
-            sign = ' - '
-        elif key == k:
-            sign = ''
-        else:
-            sign = ' + '
-        if key == 0:
-            x = ''
-            exponent = ''
-        elif key == 1:
-            x = '*x'
-            exponent = ''
-        else:
-            x = '*x**'
-            exponent = str(key)
-    line += sign + factor + x + exponent
-
-line += ' = 0'
-
-
-print(line)
+line = polynom_dict_to_line(polynom)
 
 with open('PIHomeWork04/polynom.txt', 'w') as data:
     data.writelines(line)
